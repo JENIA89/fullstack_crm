@@ -8,11 +8,16 @@ const analyticsRoutes = require('./routes/analytics');
 const categoryRoutes = require('./routes/category');
 const orderRoutes = require('./routes/order');
 const positionRoutes = require('./routes/position');
+const keys = require('./config/keys');
 const app = express();
 
 mongoose
-  .connect('178.124.155.166/32')
-  .then(() => console.log('MongoDb connected'))
+  .connect(keys.mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() => console.log('MongoDB connected'))
   .catch((error) => console.log(error));
 
 app.use(morgan('dev'));
