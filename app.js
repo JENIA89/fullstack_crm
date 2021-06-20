@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const passport = require('passport');
 const authRoutes = require('./routes/auth');
 const analyticsRoutes = require('./routes/analytics');
 const categoryRoutes = require('./routes/category');
@@ -19,6 +20,8 @@ mongoose
   })
   .then(() => console.log('MongoDB connected'))
   .catch((error) => console.log(error));
+
+app.use(passport.initialize());
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
