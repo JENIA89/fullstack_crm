@@ -16,7 +16,7 @@ const limits = {
 };
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'img/png' || file.mimetype === 'img/jpeg') {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
     cb(null, true);
   } else {
     cb(null, false);
