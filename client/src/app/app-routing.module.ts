@@ -16,9 +16,7 @@ const routes: Routes = [
   } 
   ,
   {
-    path: '', component: SiteLayoutComponent, canActivate: [AuthGuard] children: [
-
-    ]
+    path: '', component: SiteLayoutComponent, canActivate: [AuthGuard] 
   }
 ];
 
