@@ -1,16 +1,54 @@
-<div class="card">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="card">
   <div class="card-content">
     <span class="card-title">Войти в систему</span>
     <div class="input-field">
-      <input id="email" type="email" required />
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [ngClass]="{
+          invalid: form.get('email').touched && form.get('email').invalid
+        }"
+      />
       <label for="email">Email:</label>
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('email').touched && form.get('email').invalid"
+      >
+        <span *ngIf="form.get('email').errors.email">Не корректный emal</span>
+        <span *ngIf="form.get('email').errors.required">Введите email</span>
+      </span>
     </div>
     <div class="input-field">
-      <input id="password" type="password" required />
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        [ngClass]="{
+          invalid: form.get('password').touched && form.get('password').invalid
+        }"
+      />
       <label for="password">Пароль:</label>
+      <span
+        class="helper-text red-text"
+        *ngIf="form.get('password').touched && form.get('password').invalid"
+      >
+        <span *ngIf="form.get('password').errors.minlength"
+          >Минимальная длинна пароля
+          {{ form.get("password").errors.minlength.requiredLength }}
+          символов</span
+        >
+        <span *ngIf="form.get('password').errors.required">Введите пароль</span>
+      </span>
     </div>
   </div>
   <div class="card-action">
-    <button class="modal-action btn waves-effect">Войти</button>
+    <button
+      type="submit"
+      class="modal-action btn waves-effect"
+      [disabled]="form.invalid"
+    >
+      Войти
+    </button>
   </div>
-</div>
+</form>
