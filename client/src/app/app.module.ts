@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { OverviewPageComponent } from './overview-page/overview-page.component';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -24,7 +25,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginPageComponent,
     AuthLayoutComponent,
     SiteLayoutComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    OverviewPageComponent
   ],
   imports: [
     BrowserModule,

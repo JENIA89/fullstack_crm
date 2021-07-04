@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MaterialService } from './material.service';
 
 @Injectable()
 
@@ -26,10 +27,14 @@ export class AuthInterceptor implements HttpInterceptor{
         return next.handle(req)
         .pipe(
             catchError((error: HttpErrorResponse)=>{
-                console.log('[interceptor Error]', error)
+                MaterialService.toasts(error.error.message)
                 if(error.status === 401){
                     this.auth.logout()
-                    this.router.navigate(['/login'])
+                    this.router.navigate(['/login'], {
+                        queryParams: {
+                            sessionFailed: true
+                        }
+                    })
                 }
                 return throwError(error)
             })

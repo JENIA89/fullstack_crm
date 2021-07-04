@@ -1,3 +1,4 @@
+import { MaterialService } from './../shared/services/material.service';
 import { User } from './../shared/interfaces';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -35,9 +36,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   showMessage(){
     this.route.queryParams.subscribe((params: Params)=>{
       if(params['registered']){
-        //Теперь вы можете зайти в систему используя свои данные
+        MaterialService.toasts('Теперь вы можете зайти в систему используя свои данные')
       }else if(params['accessDenied']){
-        //Для начала авторизируйтесь в системе
+        MaterialService.toasts('Для начала авторизируйтесь в системе')
+      }else if(params['sessionFailed']){
+        MaterialService.toasts('Пожалуйста, войдите в систему заново')
       }
     })
   }

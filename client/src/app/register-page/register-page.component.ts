@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MaterialService } from '../shared/services/material.service';
 
 @Component({
   selector: 'app-register-page',
@@ -38,17 +39,14 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       email: this.form.value.email,
       password: this.form.value.password
     }
-    this.sub = this.auth.register(user).subscribe(
-      ()=>{
+    this.sub = this.auth.register(user).subscribe(()=>{
         this.router.navigate(['/login'], {
           queryParams:{
             registered: true
           }
         })
         console.log(' user created')
-      },
-      (e)=>console.log(e)
-    )
+      })
   }
 
   ngOnDestroy(){
