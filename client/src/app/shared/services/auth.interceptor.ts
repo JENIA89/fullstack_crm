@@ -16,10 +16,10 @@ export class AuthInterceptor implements HttpInterceptor{
         ){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-        if(this.auth.isAuth){
+        if(this.auth.isAuth()){
             req = req.clone({
-                setParams:{
-                    req: this.auth.getToken()
+                setHeaders:{
+                    Authorization: this.auth.getToken()
                 }
             })
         }
@@ -29,7 +29,6 @@ export class AuthInterceptor implements HttpInterceptor{
             catchError((error: HttpErrorResponse)=>{
                 MaterialService.toasts(error.error.message)
                 if(error.status === 401){
-                    this.auth.logout()
                     this.router.navigate(['/login'], {
                         queryParams: {
                             sessionFailed: true
