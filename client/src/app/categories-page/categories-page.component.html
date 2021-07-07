@@ -8,10 +8,19 @@
   </button>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!isLoading; else loading">
   <div class="col s12">
     <div class="collection">
-      <a href="#!" class="collection-item">Категория 1</a>
+      <a
+        *ngFor="let category of categories"
+        href="#!"
+        class="collection-item"
+        >{{ category.name }}</a
+      >
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>
