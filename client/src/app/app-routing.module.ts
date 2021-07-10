@@ -1,3 +1,4 @@
+import { CategoriesFormComponent } from './categories-page/categories-form/categories-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,8 @@ const routes: Routes = [
       {path: 'history', component: HistoryPageComponent},
       {path: 'order', component: OrderPageComponent},
       {path: 'categories', component: CategoriesPageComponent},
+      {path: 'categories/new', component: CategoriesFormComponent},
+      {path: 'categories/:id', component: CategoriesFormComponent}
     ]
   }
 ];
