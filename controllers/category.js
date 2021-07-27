@@ -54,11 +54,11 @@ module.exports.update = async function (req, res) {
     updated.imageSrc = req.file.path;
   }
   try {
-    const category = await Category.findOneAndUpdate({
-      _id: req.params.id,
-      $set: updated,
-      new: true,
-    });
+    const category = await Category.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: updated },
+      { new: true }
+    );
     res.status(200).json(category);
   } catch (e) {
     errorHandler(res, e);
